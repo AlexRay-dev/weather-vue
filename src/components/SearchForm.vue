@@ -73,7 +73,7 @@ export default {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  background-image: url('../assets/img/search.svg');
+  background-image: url('../assets/icons/search.svg');
   background-repeat: no-repeat;
 }
 </style>

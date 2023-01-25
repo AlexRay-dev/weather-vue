@@ -3,7 +3,9 @@
     <div class='weather'>
       <div class='weather__container'>
         <search-form/>
-        <div class='weather__main flex'>
+        <div class="weather__main">
+          <weather-tabs/>
+
         </div>
       </div>
     </div>
@@ -13,9 +15,11 @@
 <script>
 
 import SearchForm from "@/components/SearchForm";
+import WeatherTabs from "@/components/weather-tabs/WeatherTabs";
+
 export default {
   name: 'App',
-  components: {SearchForm}
+  components: {WeatherTabs, SearchForm},
 }
 </script>
 
@@ -24,9 +28,14 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: black;
   margin-top: 60px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 }
 .weather {
   width: 621px;
