@@ -1,7 +1,7 @@
 <template>
-  <form class="form">
+  <form class="search">
     <input
-        class='form__input'
+        class='search__input'
         type='text'
         placeholder='Search city'
         :value="searchQuery"
@@ -9,71 +9,77 @@
         v-focus
     />
 
-    <input
-        class='form__search-btn'
+    <button
+        class='search__submit'
         type='submit'
         @click.prevent="fetchWeather"
-    />
+    >
+      <icon-search/>
+    </button>
   </form>
 </template>
 
 <script>
-import {mapState, mapGetters, mapActions, mapMutations} from 'vuex'
+import {mapActions, mapGetters, mapMutations, mapState} from 'vuex'
+import IconSearch from "@/components/icons/IconSearch";
 
 export default {
+  components: {IconSearch},
   methods: {
+    fetchWeather() {
+      this.fetchCurrentWeather();
+      this.fetchForecast();
+      this.setSearchQuery('');
+    },
     ...mapMutations({
       setSearchQuery: 'setSearchQuery',
     }),
     ...mapActions({
-      fetchWeather: 'fetchWeather'
+      fetchCurrentWeather: 'fetchCurrentWeather',
+      fetchForecast: 'fetchForecast'
     }),
   },
   computed: {
     ...mapState({
       searchQuery: state => state.searchQuery,
     }),
-    ...mapGetters({
-    })
+    ...mapGetters({})
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.form {
+.search {
   display: flex;
   align-items: center;
-  position: relative;
+  justify-content: space-between;
   padding: 8px 16px;
   border-bottom: 1px solid #000;
 }
 
-.form__input {
-  width: 542px;
-  padding: 0 10px 0 0;
+.search__input {
+  width: 100%;
+  padding-right: 20px;
   font-size: 18px;
   line-height: 21px;
   border: none;
   outline: none;
 }
 
-.form__input::placeholder {
+.search__input::placeholder {
   font-size: 18px;
   line-height: 21px;
   color: #696969;
 }
 
-.form__search-btn {
+.search__submit {
   font-size: 0;
-  position: absolute;
   padding: 0;
-  right: 11px;
   width: 30px;
   height: 30px;
   border: none;
-  background-color: transparent;
+  outline: none;
   cursor: pointer;
-  background-image: url('../assets/icons/search.svg');
-  background-repeat: no-repeat;
+  background-color: inherit;
 }
 </style>

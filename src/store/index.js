@@ -5,8 +5,10 @@ import {API} from "@/consts/api";
 export default createStore({
   state: () => ({
     searchQuery: '',
-    isWeatherLoading: false,
-    weather: {},
+    isCurrentWeatherLoading: false,
+    isForecastLoading: false,
+    currentWeather: {},
+    forecast: {},
   }),
   getters: {
   },
@@ -14,23 +16,40 @@ export default createStore({
     setSearchQuery(state, searchQuery) {
       state.searchQuery = searchQuery;
     },
-    setLoading(state, bool) {
-      state.isWeatherLoading = bool;
+    setCurrentWeatherLoading(state, bool) {
+      state.isCurrentWeatherLoading = bool;
     },
-    setWeather(state, weather) {
-      state.weather = weather;
+    setForecastLoading(state, bool) {
+      state.isForecastLoading = bool;
+    },
+    setCurrentWeather(state, weather) {
+      state.currentWeather = weather;
+    },
+    setForecast(state, forecast) {
+      state.forecast = forecast;
     },
   },
   actions: {
-    async fetchWeather({state, commit}) {
+    async fetchCurrentWeather({state, commit}) {
       try {
-        commit('setLoading', true);
+        commit('setCurrentWeatherLoading', true);
         const response = await axios.get(`${API.URL_MAIN}?q=${state.searchQuery.trim()}&cnt=4&appid=${API.KEY}`);
-        commit('setWeather', response.data)
+        commit('setCurrentWeather', response.data)
       } catch (e) {
         console.error(e)
       } finally {
-        commit('setLoading', false);
+        commit('setCurrentWeatherLoading', false);
+      }
+    },
+    async fetchForecast({state, commit}) {
+      try {
+        commit('setForecastLoading', true);
+        const response = await axios.get(`${API.URL_FORECAST}?q=${state.searchQuery.trim()}&cnt=4&appid=${API.KEY}`);
+        commit('setForecast', response.data)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        commit('setForecastLoading', false);
       }
     },
   },

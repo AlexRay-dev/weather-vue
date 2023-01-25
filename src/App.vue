@@ -38,11 +38,10 @@ export default {
 }
 
 .weather {
-  width: 621px;
+  max-width: 621px;
+  width: 100%;
   margin: 50px auto auto auto;
-  padding: 10px;
   font-size: 24px;
-  line-height: 28px;
   background-color: #fff;
 }
 
