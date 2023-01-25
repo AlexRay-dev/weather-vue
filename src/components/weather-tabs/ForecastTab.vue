@@ -26,5 +26,9 @@ export default {
     font-size: 24px;
     margin-bottom: 7px;
   }
+  &__list {
+    padding: 0;
+    margin: 0;
+  }
 }
 </style>

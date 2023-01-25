@@ -25,6 +25,11 @@ export default {
     margin-bottom: 42px;
   }
 
+  &__list {
+    padding: 0;
+    margin: 0;
+  }
+
   &__item {
     font-size: 24px;
 

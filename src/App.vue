@@ -5,7 +5,7 @@
         <search-form/>
         <div class="weather__main">
           <weather-tabs/>
-
+          <favorite-list/>
         </div>
       </div>
     </div>
@@ -16,10 +16,11 @@
 
 import SearchForm from "@/components/SearchForm";
 import WeatherTabs from "@/components/weather-tabs/WeatherTabs";
+import FavoriteList from "@/components/favorites/FavoriteList";
 
 export default {
   name: 'App',
-  components: {WeatherTabs, SearchForm},
+  components: {FavoriteList, WeatherTabs, SearchForm},
 }
 </script>
 
@@ -33,22 +34,23 @@ export default {
 
   ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
   }
 }
+
 .weather {
   width: 621px;
-  /*height: 462px;*/
   margin: 50px auto auto auto;
   padding: 10px;
   font-size: 24px;
   line-height: 28px;
   background-color: #fff;
 }
+
 .weather__main {
+  display: flex;
   height: 388px;
 }
+
 .weather__container {
   border: 1px solid #000;
 }

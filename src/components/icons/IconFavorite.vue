@@ -16,6 +16,7 @@
 
 <script>
 export default {
+  name: 'icon-favorite',
   props: {
     width: {
       type: [Number, String],
