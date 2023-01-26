@@ -1,12 +1,13 @@
 <template>
   <div class="weather__tab  tab-now">
     <div class="tab-now__temp">
-      -9
+      <!--   eslint-disable-next-line   -->
+      {{ this.currentWeather ? (this.currentWeather.main.temp + '&#176') : 'City is not found' }}
     </div>
 
     <div class="tab-now__footer">
       <div class="tab-now__city">
-        Perm
+        {{ this.currentWeather ? this.currentWeather.name : 'City' }}
       </div>
 
       <button
@@ -21,14 +22,26 @@
 
 <script>
 import IconFavorite from "@/components/icons/IconFavorite";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: 'now-tab',
   components: {IconFavorite},
   methods: {
     addToFavorite() {
-      console.log(1)
-    }
+      const isFavorite = this.favorites.includes(this.city);
+      if (!isFavorite) this.setFavorites([...this.favorites, this.city]);
+    },
+    ...mapMutations({
+      setFavorites: 'setFavorites',
+    }),
+  },
+  computed: {
+    ...mapState({
+      currentWeather: state => state.currentWeather,
+      city: state => state.city,
+      favorites: state => state.favorites
+    })
   }
 }
 </script>

@@ -8,7 +8,6 @@
         @input="setSearchQuery($event.target.value)"
         v-focus
     />
-
     <button
         class='search__submit'
         type='submit'
@@ -20,30 +19,35 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, mapMutations, mapState} from 'vuex'
+import {mapActions, mapMutations, mapState} from 'vuex'
 import IconSearch from "@/components/icons/IconSearch";
 
 export default {
   components: {IconSearch},
   methods: {
     fetchWeather() {
+      this.setCity(this.searchQuery)
       this.fetchCurrentWeather();
       this.fetchForecast();
       this.setSearchQuery('');
     },
     ...mapMutations({
       setSearchQuery: 'setSearchQuery',
+      setCity: 'setCity',
     }),
     ...mapActions({
       fetchCurrentWeather: 'fetchCurrentWeather',
       fetchForecast: 'fetchForecast'
     }),
   },
+  mounted() {
+      this.fetchCurrentWeather();
+      this.fetchForecast();
+  },
   computed: {
     ...mapState({
       searchQuery: state => state.searchQuery,
     }),
-    ...mapGetters({})
   },
 }
 </script>

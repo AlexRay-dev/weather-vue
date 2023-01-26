@@ -4,7 +4,7 @@
         class="favorite__item-title"
         @click="showWeather"
     >
-      Perm
+      {{ favoriteCity }}
     </div>
     <button
         class="favorite__item-button"
@@ -17,17 +17,41 @@
 
 <script>
 import IconClose from "@/components/icons/IconClose";
+import {mapActions, mapMutations, mapState} from "vuex";
 
 export default {
   name: 'favorite-item',
   components: {IconClose},
+  props: {
+    favoriteCity: {
+      type: String,
+      required: true,
+    }
+  },
   methods: {
     showWeather() {
-
+      this.setCity(this.favoriteCity)
+      this.fetchCurrentWeather();
+      this.fetchForecast();
     },
     removeFromFavorites() {
-
-    }
+      this.setFavorites(
+          this.favorites.filter(city => city !== this.favoriteCity)
+      )
+    },
+    ...mapMutations({
+      setFavorites: 'setFavorites',
+      setCity: 'setCity',
+    }),
+    ...mapActions({
+      fetchCurrentWeather: 'fetchCurrentWeather',
+      fetchForecast: 'fetchForecast',
+    }),
+  },
+  computed: {
+    ...mapState({
+      favorites: state => state.favorites,
+    })
   }
 }
 </script>

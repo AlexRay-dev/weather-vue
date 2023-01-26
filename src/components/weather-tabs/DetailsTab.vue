@@ -1,20 +1,37 @@
 <template>
   <div class="weather__tab tab-details">
-    <div class="tab-details__city">Perm</div>
+    <div class="tab-details__city">{{this.currentWeather.name}}</div>
 
     <ul class="tab-details__list">
-      <li class="tab-details__item">Temperature: 9</li>
-      <li class="tab-details__item">Feels like: 9</li>
-      <li class="tab-details__item">Weather: 9</li>
-      <li class="tab-details__item">Sunrise: 9</li>
-      <li class="tab-details__item">Sunset: 9</li>
+      <li class="tab-details__item">Temperature: {{this.currentWeather.main.temp}}</li>
+      <li class="tab-details__item">Feels like: {{this.currentWeather.main.feels_like}}</li>
+      <li class="tab-details__item">Weather: {{this.currentWeather.weather[0].main}}</li>
+      <li class="tab-details__item">Sunrise: {{(new Date(this.currentWeather.sys.sunrise)).toLocaleTimeString()}}</li>
+      <li class="tab-details__item">Sunset: {{getTime(this.currentWeather.main.sunset)}}</li>
+      <li class="tab-details__item">Sunset: {{this.currentWeather.main.sunset}}</li>
     </ul>
   </div>
 </template>
 
 <script>
+import {mapState} from "vuex";
+import {getTime} from "@/utils";
+
 export default {
-  name: 'details-tab'
+  name: 'details-tab',
+  methods: {
+
+  },
+  setup () {
+    return {
+      getTime
+    }
+  },
+  computed: {
+    ...mapState({
+      currentWeather: state => state.currentWeather
+    })
+  }
 }
 </script>
 

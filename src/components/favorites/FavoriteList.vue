@@ -3,17 +3,27 @@
     <div class='favorite__title'>Added Locations:</div>
 
     <ul class="favorite__list">
-      <favorite-item/>
+      <favorite-item
+          v-for="favoriteCity in favorites"
+          :favoriteCity="favoriteCity"
+          :key="favoriteCity"
+      />
     </ul>
   </div>
 </template>
 
 <script>
 import FavoriteItem from "@/components/favorites/FavoriteItem";
+import {mapState} from "vuex";
 
 export default {
   name: 'favorite-list',
-  components: {FavoriteItem}
+  components: {FavoriteItem},
+  computed: {
+    ...mapState({
+      favorites: state => state.favorites
+    })
+  }
 }
 </script>
 
