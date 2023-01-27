@@ -1,5 +1,9 @@
 <template>
-  <div class="weather__tab tab-details">
+  <div v-if="isCurrentWeatherLoading" class="weather__tab-loading">Идёт загрузка...</div>
+  <div
+      v-else-if="currentWeather"
+      class="weather__tab tab-details"
+  >
     <div class="tab-details__city">{{this.currentWeather.name}}</div>
 
     <ul class="tab-details__list">
@@ -10,6 +14,7 @@
       <li class="tab-details__item">Sunset: {{getTime(currentWeather.sys.sunset)}}</li>
     </ul>
   </div>
+  <div v-else class="weather__tab-error">Произошла ошибка при загрузке страницы</div>
 </template>
 
 <script>
@@ -23,6 +28,7 @@ export default {
   },
   computed: {
     ...mapState({
+      isCurrentWeatherLoading: state => state.isCurrentWeatherLoading,
       currentWeather: state => state.currentWeather
     })
   }

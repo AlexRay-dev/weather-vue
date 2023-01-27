@@ -19,14 +19,15 @@
 </template>
 
 <script>
-import {mapActions, mapMutations, mapState} from 'vuex'
+import {mapActions, mapMutations, mapState} from 'vuex';
 import IconSearch from "@/components/icons/IconSearch";
 
 export default {
   components: {IconSearch},
   methods: {
     fetchWeather() {
-      this.setCity(this.searchQuery)
+      if (!this.searchQuery.trim()) return;
+      this.setCity(this.searchQuery);
       this.fetchCurrentWeather();
       this.fetchForecast();
       this.setSearchQuery('');

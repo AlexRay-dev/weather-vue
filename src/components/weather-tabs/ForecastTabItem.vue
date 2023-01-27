@@ -6,16 +6,18 @@
     </div>
     <div class="tab-forecast__item-body">
       <div>
-        <div>Temperature: {{Math.round(forecastItem.main.temp)}}°</div>
+        <div style="margin-bottom: 10px">Temperature: {{Math.round(forecastItem.main.temp)}}°</div>
         <div>Feels like: {{Math.round(forecastItem.main.feels_like)}}°</div>
       </div>
 
-      <div>
+      <div class="tab-forecast__item-wrapper">
         <div>{{ forecastItem.weather[0].main }}</div>
-        <img
-            class='tab-forecast__item-img'
-            :src="API.IMG + forecastItem.weather[0].icon + '@4x.png'"
-        />
+        <div class='tab-forecast__item-img'>
+          <img
+              :src="API.IMG + forecastItem.weather[0].icon + '@2x.png'"
+              alt="weather img"
+          />
+        </div>
       </div>
     </div>
   </li>
@@ -26,6 +28,11 @@ import {getDate, getTime} from "@/utils";
 import {API} from "@/consts/api";
 
 export default {
+  data() {
+    return {
+      API
+    }
+  },
   props: {
     forecastItem: {
       type: Object,
@@ -58,6 +65,20 @@ export default {
   &-body {
     display: flex;
     justify-content: space-between;
+  }
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &-img {
+    width: 50px;
+    height: 40px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>

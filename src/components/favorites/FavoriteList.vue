@@ -3,7 +3,9 @@
     <div class='favorite__title'>Added Locations:</div>
 
     <ul class="favorite__list">
+      <li v-if="!favorites.length">Favorite list is empty</li>
       <favorite-item
+          v-else
           v-for="favoriteCity in favorites"
           :favoriteCity="favoriteCity"
           :key="favoriteCity"

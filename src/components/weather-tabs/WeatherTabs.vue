@@ -33,24 +33,27 @@ export default {
   data() {
     return {
       tabs,
-      currentTab: tabs[0]
+      currentTab: tabs[0],
     }
   },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .weather__tabs {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   border-right: 1px solid #000;
   height: 100%;
 }
+
 .tab__buttons {
   display: flex;
   align-self: flex-end;
 }
+
 .tab__button {
   display: inline-block;
   width: 100px;
@@ -75,9 +78,28 @@ export default {
     background-color: #000;
   }
 }
+
 .weather__tab {
   height: 100%;
   padding: 33px 18px 18px 18px;
   overflow-y: auto;
+
+  &-loading,
+  &-error {
+    height: 100%;
+    padding: 33px 18px 18px 18px;
+  }
+}
+@media (max-width: 500px) {
+  .weather__tabs {
+    max-width: 100%;
+  }
+  .tab__buttons {
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+  .tab__button {
+    width: 100%;
+  }
 }
 </style>

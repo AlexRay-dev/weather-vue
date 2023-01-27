@@ -1,6 +1,10 @@
 <template>
-  <div class="weather__tab tab-forecast">
-    <div class="tab-forecast__city">{{ city }}</div>
+  <div v-if="isCurrentWeatherLoading" class="weather__tab-loading">Идёт загрузка...</div>
+  <div
+      v-else-if="forecast"
+      class="weather__tab tab-forecast"
+  >
+    <div class="tab-forecast__city">{{ forecast.city.name }}</div>
 
     <ul class="tab-forecast__list">
       <forecast-tab-item
@@ -10,6 +14,7 @@
       />
     </ul>
   </div>
+  <div v-else class="weather__tab-error">Произошла ошибка при загрузке страницы</div>
 </template>
 
 <script>
@@ -22,7 +27,6 @@ export default {
   computed: {
     ...mapState({
       forecast: state => state.forecast,
-      city: state => state.city,
     })
   }
 }
@@ -32,8 +36,10 @@ export default {
 .tab-forecast {
   &__city {
     font-size: 24px;
+    text-transform: capitalize;
     margin-bottom: 7px;
   }
+
   &__list {
     padding: 0;
     margin: 0;

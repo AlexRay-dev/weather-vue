@@ -53,4 +53,10 @@ export default {
 .weather__container {
   border: 1px solid #000;
 }
+@media (max-width: 500px) {
+  .weather__main {
+    flex-direction: column;
+    height: auto;
+  }
+}
 </style>

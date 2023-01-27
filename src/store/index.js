@@ -2,6 +2,15 @@ import {createStore} from 'vuex'
 import axios from "axios";
 import {API} from "@/consts/api";
 import {DEFAULT_CITY} from "@/consts/config";
+import createPersistedState from 'vuex-persist'
+
+const vuexLocal = new createPersistedState({
+    key: 'vuex',
+    storage: window.localStorage,
+    reducer: state => ({
+        favorites: state.favorites
+    })
+})
 
 export default createStore({
     state: () => ({
@@ -61,4 +70,5 @@ export default createStore({
             }
         },
     },
+    plugins: [vuexLocal.plugin]
 })

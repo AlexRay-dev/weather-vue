@@ -68,6 +68,7 @@ export default {
   &-title {
     font-size: 24px;
     cursor: pointer;
+    text-transform: capitalize;
 
     &:hover {
       text-decoration: underline;
