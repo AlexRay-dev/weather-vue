@@ -1,26 +1,41 @@
 <template>
   <li class="tab-forecast__item">
     <div class="tab-forecast__item-header">
-      <div>January 25</div>
-      <div>14:00</div>
+      <div>{{getDate(forecastItem.dt)}}</div>
+      <div>{{getTime(forecastItem.dt)}}</div>
     </div>
     <div class="tab-forecast__item-body">
       <div>
-        <div>Temperature: -9°</div>
-        <div>Feels like: -15°</div>
+        <div>Temperature: {{Math.round(forecastItem.main.temp)}}°</div>
+        <div>Feels like: {{Math.round(forecastItem.main.feels_like)}}°</div>
       </div>
 
       <div>
-        <div>Clouds</div>
-        <div>icon</div>
+        <div>{{ forecastItem.weather[0].main }}</div>
+        <img
+            class='tab-forecast__item-img'
+            :src="API.IMG + forecastItem.weather[0].icon + '@4x.png'"
+        />
       </div>
     </div>
   </li>
 </template>
 
 <script>
+import {getDate, getTime} from "@/utils";
+import {API} from "@/consts/api";
+
 export default {
-  props: {}
+  props: {
+    forecastItem: {
+      type: Object,
+      required: true,
+    }
+  },
+  methods: {
+    getDate,
+    getTime
+  },
 }
 </script>
 

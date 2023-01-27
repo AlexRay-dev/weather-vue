@@ -1,8 +1,7 @@
 <template>
   <div class="weather__tab  tab-now">
     <div class="tab-now__temp">
-      <!--   eslint-disable-next-line   -->
-      {{ this.currentWeather ? (this.currentWeather.main.temp + '&#176') : 'City is not found' }}
+      {{ this.currentWeather ? (Math.round(this.currentWeather.main.temp) + '°') : '' }}
     </div>
 
     <div class="tab-now__footer">

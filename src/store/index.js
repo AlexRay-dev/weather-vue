@@ -52,7 +52,7 @@ export default createStore({
         async fetchForecast({state, commit}) {
             try {
                 commit('setForecastLoading', true);
-                const response = await axios.get(`${API.URL_FORECAST}?q=${state.city.trim()}&cnt=4&appid=${API.KEY}`);
+                const response = await axios.get(`${API.URL_FORECAST}?q=${state.city.trim()}&units=metric&cnt=4&appid=${API.KEY}`);
                 commit('setForecast', response.data)
             } catch (e) {
                 console.error(e)

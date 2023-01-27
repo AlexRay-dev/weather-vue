@@ -3,12 +3,11 @@
     <div class="tab-details__city">{{this.currentWeather.name}}</div>
 
     <ul class="tab-details__list">
-      <li class="tab-details__item">Temperature: {{this.currentWeather.main.temp}}</li>
-      <li class="tab-details__item">Feels like: {{this.currentWeather.main.feels_like}}</li>
+      <li class="tab-details__item">Temperature: {{Math.round(this.currentWeather.main.temp)}}°</li>
+      <li class="tab-details__item">Feels like: {{Math.round(this.currentWeather.main.feels_like)}}°</li>
       <li class="tab-details__item">Weather: {{this.currentWeather.weather[0].main}}</li>
-      <li class="tab-details__item">Sunrise: {{(new Date(this.currentWeather.sys.sunrise)).toLocaleTimeString()}}</li>
-      <li class="tab-details__item">Sunset: {{getTime(this.currentWeather.main.sunset)}}</li>
-      <li class="tab-details__item">Sunset: {{this.currentWeather.main.sunset}}</li>
+      <li class="tab-details__item">Sunrise: {{getTime(currentWeather.sys.sunrise)}}</li>
+      <li class="tab-details__item">Sunset: {{getTime(currentWeather.sys.sunset)}}</li>
     </ul>
   </div>
 </template>
@@ -20,12 +19,7 @@ import {getTime} from "@/utils";
 export default {
   name: 'details-tab',
   methods: {
-
-  },
-  setup () {
-    return {
-      getTime
-    }
+    getTime
   },
   computed: {
     ...mapState({

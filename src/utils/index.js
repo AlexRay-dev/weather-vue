@@ -1,8 +1,12 @@
-export const getTime = (time) => {
-    const unixTime = (time - 10800) * 1000;
-    const date = new Date(unixTime);
-    const hours = (date.getHours() < 10) ? `0${date.getHours()}` : date.getHours();
-    const minutes = (date.getMinutes() < 10) ? `0${date.getMinutes()}` : date.getMinutes();
+import {format} from "date-fns";
 
-    return `${hours}:${minutes}`;
+export const getTime = (time) => {
+    console.log(time)
+    if (typeof time === 'number') {
+        return format(new Date(Number(time) * 1000), "HH:mm")
+    }
+    return 'err'
 };
+export function getDate(date) {
+    return format(new Date(date * 1000), "d LLL");
+}
