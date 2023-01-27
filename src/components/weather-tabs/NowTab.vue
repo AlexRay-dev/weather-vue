@@ -47,12 +47,12 @@ export default {
   },
   methods: {
     addToFavorite() {
-      const isFavorite = this.favorites.includes(this.currentWeather.name);
+      const isFavorite = this.favorites.includes(this.currentWeather.name.toLowerCase());
       if (!isFavorite) {
-        this.setFavorites([...this.favorites, this.currentWeather.name]);
+        this.setFavorites([...this.favorites, this.currentWeather.name.toLowerCase()]);
         this.isFavoriteIconFilled = true;
       } else {
-        this.setFavorites(this.favorites.filter(city => city !== this.currentWeather.name));
+        this.setFavorites(this.favorites.filter(city => city !== this.currentWeather.name.toLowerCase()));
         this.isFavoriteIconFilled = false;
       }
     },
@@ -61,7 +61,9 @@ export default {
     }),
   },
   updated() {
-    this.isFavoriteIconFilled = this.favorites.includes(this.city);
+    if(this.currentWeather) {
+      this.isFavoriteIconFilled = this.favorites.includes(this.currentWeather.name.toLowerCase());
+    }
   },
   computed: {
     ...mapState({

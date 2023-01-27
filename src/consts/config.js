@@ -1,1 +1,1 @@
-export const DEFAULT_CITY = 'Moscow';
+export const DEFAULT_CITY = 'moscow';
