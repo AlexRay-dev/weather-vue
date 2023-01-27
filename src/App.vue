@@ -1,13 +1,10 @@
 <template>
-  <div class="app">
-    <div class='weather'>
-      <div class='weather__container'>
-        <search-form/>
-        <div class="weather__main">
-          <weather-tabs/>
-          <favorite-list/>
-        </div>
-      </div>
+  <div class='weather'>
+    <search-form/>
+
+    <div class="weather__main">
+      <weather-tabs/>
+      <favorite-list/>
     </div>
   </div>
 </template>
@@ -30,7 +27,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: black;
-  margin-top: 60px;
 
   ul {
     list-style: none;
@@ -38,11 +34,12 @@ export default {
 }
 
 .weather {
-  max-width: 621px;
+  margin: 100px auto auto auto;
+  max-width: 620px;
   width: 100%;
-  margin: 50px auto auto auto;
   font-size: 24px;
   background-color: #fff;
+  border: 1px solid #000;
 }
 
 .weather__main {
@@ -51,8 +48,8 @@ export default {
 }
 
 .weather__container {
-  border: 1px solid #000;
 }
+
 @media (max-width: 500px) {
   .weather__main {
     flex-direction: column;

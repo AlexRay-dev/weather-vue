@@ -42,8 +42,8 @@ export default {
     }),
   },
   mounted() {
-      this.fetchCurrentWeather();
-      this.fetchForecast();
+    this.fetchCurrentWeather();
+    this.fetchForecast();
   },
   computed: {
     ...mapState({

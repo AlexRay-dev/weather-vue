@@ -8,7 +8,7 @@ const vuexLocal = new createPersistedState({
     key: 'vuex',
     storage: window.localStorage,
     reducer: state => ({
-        favorites: state.favorites
+        favorites: state.favorites,
     })
 })
 
@@ -51,9 +51,10 @@ export default createStore({
             try {
                 commit('setCurrentWeatherLoading', true);
                 const response = await axios.get(`${API.URL_MAIN}?q=${state.city.trim()}&units=metric&cnt=4&appid=${API.KEY}`);
-                commit('setCurrentWeather', response.data)
+                commit('setCurrentWeather', response.data);
             } catch (e) {
-                console.error(e)
+                console.error(e);
+                alert(e.response.data.message);
             } finally {
                 commit('setCurrentWeatherLoading', false);
             }
@@ -62,13 +63,13 @@ export default createStore({
             try {
                 commit('setForecastLoading', true);
                 const response = await axios.get(`${API.URL_FORECAST}?q=${state.city.trim()}&units=metric&cnt=4&appid=${API.KEY}`);
-                commit('setForecast', response.data)
+                commit('setForecast', response.data);
             } catch (e) {
-                console.error(e)
+                console.error(e);
             } finally {
                 commit('setForecastLoading', false);
             }
         },
     },
-    plugins: [vuexLocal.plugin]
+    plugins: [vuexLocal.plugin],
 })

@@ -1,13 +1,13 @@
 <template>
   <li class="tab-forecast__item">
     <div class="tab-forecast__item-header">
-      <div>{{getDate(forecastItem.dt)}}</div>
-      <div>{{getTime(forecastItem.dt)}}</div>
+      <div>{{ getDate(forecastItem.dt) }}</div>
+      <div>{{ getTime(forecastItem.dt) }}</div>
     </div>
     <div class="tab-forecast__item-body">
       <div>
-        <div style="margin-bottom: 10px">Temperature: {{Math.round(forecastItem.main.temp)}}°</div>
-        <div>Feels like: {{Math.round(forecastItem.main.feels_like)}}°</div>
+        <div style="margin-bottom: 10px">Temperature: {{ Math.round(forecastItem.main.temp) }}°</div>
+        <div>Feels like: {{ Math.round(forecastItem.main.feels_like) }}°</div>
       </div>
 
       <div class="tab-forecast__item-wrapper">
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import {getDate, getTime} from "@/utils";
+import {getDate, getTime} from "@/utils/time-conversion";
 import {API} from "@/consts/api";
 
 export default {
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     getDate,
-    getTime
+    getTime,
   },
 }
 </script>
@@ -66,11 +66,13 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+
   &-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   &-img {
     width: 50px;
     height: 40px;

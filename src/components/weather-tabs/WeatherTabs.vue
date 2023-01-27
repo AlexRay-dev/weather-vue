@@ -3,7 +3,6 @@
     <component :is="currentTab.component"></component>
 
     <div class="tab__buttons">
-
       <button
           v-for="tab in tabs"
           :key="tab.name"
@@ -90,6 +89,7 @@ export default {
     padding: 33px 18px 18px 18px;
   }
 }
+
 @media (max-width: 500px) {
   .weather__tabs {
     max-width: 100%;

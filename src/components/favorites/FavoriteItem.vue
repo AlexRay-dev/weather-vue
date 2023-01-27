@@ -30,14 +30,12 @@ export default {
   },
   methods: {
     showWeather() {
-      this.setCity(this.favoriteCity)
+      this.setCity(this.favoriteCity);
       this.fetchCurrentWeather();
       this.fetchForecast();
     },
     removeFromFavorites() {
-      this.setFavorites(
-          this.favorites.filter(city => city !== this.favoriteCity)
-      )
+      this.setFavorites(this.favorites.filter(city => city !== this.favoriteCity));
     },
     ...mapMutations({
       setFavorites: 'setFavorites',
@@ -50,6 +48,7 @@ export default {
   },
   computed: {
     ...mapState({
+      currentWeather: state => state.currentWeather,
       favorites: state => state.favorites,
     })
   }

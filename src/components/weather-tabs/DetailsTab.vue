@@ -4,14 +4,14 @@
       v-else-if="currentWeather"
       class="weather__tab tab-details"
   >
-    <div class="tab-details__city">{{this.currentWeather.name}}</div>
+    <div class="tab-details__city">{{ currentWeather.name }}</div>
 
     <ul class="tab-details__list">
-      <li class="tab-details__item">Temperature: {{Math.round(this.currentWeather.main.temp)}}°</li>
-      <li class="tab-details__item">Feels like: {{Math.round(this.currentWeather.main.feels_like)}}°</li>
-      <li class="tab-details__item">Weather: {{this.currentWeather.weather[0].main}}</li>
-      <li class="tab-details__item">Sunrise: {{getTime(currentWeather.sys.sunrise)}}</li>
-      <li class="tab-details__item">Sunset: {{getTime(currentWeather.sys.sunset)}}</li>
+      <li class="tab-details__item">Temperature: {{ Math.round(currentWeather.main.temp) }}°</li>
+      <li class="tab-details__item">Feels like: {{ Math.round(currentWeather.main.feels_like) }}°</li>
+      <li class="tab-details__item">Weather: {{ currentWeather.weather[0].main }}</li>
+      <li class="tab-details__item">Sunrise: {{ getTime(currentWeather.sys.sunrise) }}</li>
+      <li class="tab-details__item">Sunset: {{ getTime(currentWeather.sys.sunset) }}</li>
     </ul>
   </div>
   <div v-else class="weather__tab-error">Произошла ошибка при загрузке страницы</div>
@@ -19,17 +19,17 @@
 
 <script>
 import {mapState} from "vuex";
-import {getTime} from "@/utils";
+import {getTime} from "@/utils/time-conversion";
 
 export default {
   name: 'details-tab',
   methods: {
-    getTime
+    getTime,
   },
   computed: {
     ...mapState({
       isCurrentWeatherLoading: state => state.isCurrentWeatherLoading,
-      currentWeather: state => state.currentWeather
+      currentWeather: state => state.currentWeather,
     })
   }
 }
